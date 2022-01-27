@@ -57,15 +57,13 @@ def ImageCapture():
     #while True:
     #Get info in real time
     	
-    	ret, bgr_frame, depth_frame = rs.get_frame_stream()
-    	boxes, classes, contours, centers = mrcnn.detect_objects_mask(bgr_frame)
-	mrcnn.draw_object_info(bgr_frame,depth_frame)
-	bgr_frame = mrcnn.draw_object_mask(bgr_frame)
-	
-	
-	rospy.loginfo(bgr_frame)
-    	pub.publish(bgr_frame)
-    	rate.sleep()
+        ret, bgr_frame, depth_frame = rs.get_frame_stream()
+        boxes, classes, contours, centers = mrcnn.detect_objects_mask(bgr_frame)
+        mrcnn.draw_object_info(bgr_frame,depth_frame)
+        bgr_frame = mrcnn.draw_object_mask(bgr_frame)
+        rospy.loginfo(bgr_frame)
+        pub.publish(bgr_frame)
+        rate.sleep()
 
 
 if __name__ == '__main__':
